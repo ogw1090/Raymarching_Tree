@@ -11,6 +11,9 @@
         },
         {
             "m_Id": "ebc30ec5a25a465494b3fba3644f57d6"
+        },
+        {
+            "m_Id": "014dda31b2fa4ea995bb67fb37a291a9"
         }
     ],
     "m_Keywords": [],
@@ -116,6 +119,9 @@
         },
         {
             "m_Id": "d6322651dbd24a06a70cc0dfc464e614"
+        },
+        {
+            "m_Id": "2f274f84d1d14a6a88e80987d680f9cd"
         }
     ],
     "m_GroupDatas": [
@@ -177,6 +183,20 @@
                     "m_Id": "b7d9807d047d44449adef4b2ee144587"
                 },
                 "m_SlotId": 1
+            }
+        },
+        {
+            "m_OutputSlot": {
+                "m_Node": {
+                    "m_Id": "2f274f84d1d14a6a88e80987d680f9cd"
+                },
+                "m_SlotId": 0
+            },
+            "m_InputSlot": {
+                "m_Node": {
+                    "m_Id": "6df14d0519f04bf99f8b87f139864db9"
+                },
+                "m_SlotId": 9
             }
         },
         {
@@ -637,6 +657,29 @@
             "m_Id": "bf04887471fc4391a3c94855db084246"
         }
     ]
+}
+
+{
+    "m_SGVersion": 1,
+    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector3ShaderProperty",
+    "m_ObjectId": "014dda31b2fa4ea995bb67fb37a291a9",
+    "m_Guid": {
+        "m_GuidSerialized": "028a65fd-f095-408d-a4bb-c175a1e910e7"
+    },
+    "m_Name": "BirdPosition",
+    "m_DefaultReferenceName": "Vector3_014dda31b2fa4ea995bb67fb37a291a9",
+    "m_OverrideReferenceName": "",
+    "m_GeneratePropertyBlock": true,
+    "m_Precision": 0,
+    "overrideHLSLDeclaration": false,
+    "hlslDeclarationOverride": 0,
+    "m_Hidden": false,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.0
+    }
 }
 
 {
@@ -1240,6 +1283,41 @@
     "m_Value": 0.0,
     "m_DefaultValue": 0.0,
     "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
+    "m_ObjectId": "2f274f84d1d14a6a88e80987d680f9cd",
+    "m_Group": {
+        "m_Id": ""
+    },
+    "m_Name": "Property",
+    "m_DrawState": {
+        "m_Expanded": true,
+        "m_Position": {
+            "serializedVersion": "2",
+            "x": -1487.2000732421875,
+            "y": 140.80006408691407,
+            "width": 128.0,
+            "height": 124.80001068115235
+        }
+    },
+    "m_Slots": [
+        {
+            "m_Id": "dc15042886da4ac49b918e76b58a7be6"
+        }
+    ],
+    "synonyms": [],
+    "m_Precision": 0,
+    "m_PreviewExpanded": true,
+    "m_PreviewMode": 0,
+    "m_CustomColors": {
+        "m_SerializableColors": []
+    },
+    "m_Property": {
+        "m_Id": "014dda31b2fa4ea995bb67fb37a291a9"
+    }
 }
 
 {
@@ -2081,6 +2159,29 @@
 
 {
     "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "6a87b38a5d964ef2947fbfcc3fcc1d6b",
+    "m_Id": 9,
+    "m_DisplayName": "BirdPosition",
+    "m_SlotType": 0,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "BirdPosition",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
+}
+
+{
+    "m_SGVersion": 0,
     "m_Type": "UnityEditor.ShaderGraph.Vector1MaterialSlot",
     "m_ObjectId": "6b8c3541dc6648f6b1a25b56d2f7a5c7",
     "m_Id": 6,
@@ -2175,6 +2276,9 @@
         },
         {
             "m_Id": "a5c9f12f2a244e2f944685c331ed7436"
+        },
+        {
+            "m_Id": "6a87b38a5d964ef2947fbfcc3fcc1d6b"
         },
         {
             "m_Id": "842cd25648b94b99b6849f9d93b3e40b"
@@ -3740,6 +3844,29 @@
     "m_SGVersion": 0,
     "m_Type": "UnityEditor.Rendering.Universal.ShaderGraph.UniversalUnlitSubTarget",
     "m_ObjectId": "da8191177e4e43b6b19262f5325b90b3"
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.Vector3MaterialSlot",
+    "m_ObjectId": "dc15042886da4ac49b918e76b58a7be6",
+    "m_Id": 0,
+    "m_DisplayName": "BirdPosition",
+    "m_SlotType": 1,
+    "m_Hidden": false,
+    "m_ShaderOutputName": "Out",
+    "m_StageCapability": 3,
+    "m_Value": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_DefaultValue": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "m_Labels": []
 }
 
 {

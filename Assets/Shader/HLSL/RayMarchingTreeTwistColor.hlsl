@@ -6,11 +6,6 @@ float3 color;
 int num;
 float3 bird_pos;
 
-struct Distance
-{
-    float3 pos;
-    float3 color;
-};
 
 //Capsule Line
 float ln(float3 p, float3 a, float3 b, float R) 
@@ -29,8 +24,8 @@ float2x2 ro(float a)
 
 float Bird(float3 p)
 {
-    
-    return length(p) - 0.01f;
+    p = p - bird_pos;
+    return length(p) - 0.012f;
 }
 
 float Branch(float3 p) 
@@ -108,17 +103,42 @@ float Sphere(float3 p)
     return l;
 }
 
+float Smin(float a, float b, float k)
+{
+    float h = max(k - abs(a - b), 0.0) / k;
+    return min(a, b) - h * h * h * k * (1.0 / 6.0);
+}
+
+void SminColor(float a, float b)
+{
+    float diff = abs(a - b);
+    if (diff < 0.001f)
+    {
+        color = b / (a + b) * color + a / (a + b) * float3(0.69, 0.86, 0.28);
+    }
+    else
+    {
+        if ((a - b) > 0)
+        {
+            color = float3(0.69, 0.86, 0.28);
+        }
+    }
+}
+
 float Map(float3 p)
 {
     float b_dist = Branch(p);
     float s_dist = Sphere(p);
+    float bi_dist = Bird(p);
 
     if (b_dist < s_dist)
     {
         color = float3(1.0f, 1.0f, 1.0f);
-        return b_dist;
     }
-    return s_dist;
+
+    SminColor(min(b_dist, s_dist), bi_dist);
+
+    return Smin(min(b_dist, s_dist), bi_dist, 0.1f);
 }
 
 
@@ -144,6 +164,7 @@ void RayMarchingTreeTwistColor_float
     float3 Offset,
     float Twist_k,
     float3 Color,
+    float3 BirdPosition,
     out bool Hit,
     out float3 HitPosition,
     out float3 HitNormal,
@@ -155,6 +176,7 @@ void RayMarchingTreeTwistColor_float
     k = Twist_k;
     color = Color;
     num = 8;
+    bird_pos = BirdPosition;
 
     //各ピクセルごとに64回のループをまわす
     for(int i = 0; i < 24; i ++)
