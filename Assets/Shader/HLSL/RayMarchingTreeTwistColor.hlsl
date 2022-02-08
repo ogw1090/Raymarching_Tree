@@ -4,6 +4,7 @@ float3 offset;
 float k;
 float3 color;
 int num;
+float3 bird_pos;
 
 struct Distance
 {
@@ -26,6 +27,11 @@ float2x2 ro(float a)
     return float2x2(c, -s, s, c);
 }
 
+float Bird(float3 p)
+{
+    
+    return length(p) - 0.01f;
+}
 
 float Branch(float3 p) 
 {
