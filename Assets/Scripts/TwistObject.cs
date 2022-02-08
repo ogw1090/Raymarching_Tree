@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class TwistObject : MonoBehaviour
 {
-    public string str;
+    public string str_k;
+    public string str_color;
+
     private MeshRenderer m;
     private Vector3 mouse;
+    private Color color;
+    private Color lerpedColor;
+    private Color bloomColor;
     float ini_posx;
     float dist = 0;
     int count = 0;
@@ -17,6 +22,7 @@ public class TwistObject : MonoBehaviour
     void Start()
     {
         m = this.GetComponent<MeshRenderer>();
+        bloomColor = new Color(191, 32, 40);
     }
 
     // Update is called once per frame
@@ -31,7 +37,7 @@ public class TwistObject : MonoBehaviour
                 ini_posx = mouse.x;
             }
             dist = mouse.x - ini_posx;
-            m.material.SetFloat(str, Mathf.Clamp(dist, -MAX_RANGE, MAX_RANGE));
+            m.material.SetFloat(str_k, Mathf.Clamp(dist, -MAX_RANGE, MAX_RANGE));
             count++;
             Debug.Log(mouse.x);
         }
@@ -41,6 +47,9 @@ public class TwistObject : MonoBehaviour
             StartCoroutine(SincCurve(dist));
             count = 0;
             dist = 0;
+            color = new Color(191, 191, 191, 0);
+            m.material.SetColor(str_color, color);
+            StartCoroutine("ScatterdPulmBlossoms");
         }
 
         if (Input.GetMouseButtonDown(1)) //右クリック
@@ -59,7 +68,7 @@ public class TwistObject : MonoBehaviour
         {
 
             float b = ymax * Mathf.Sin(x) / (2 * x) ;
-            m.material.SetFloat(str, b);
+            m.material.SetFloat(str_k, b);
 
             x += 0.5f;
             yield return new WaitForSeconds(0.01f);
@@ -72,4 +81,26 @@ public class TwistObject : MonoBehaviour
         }
 
     }
+
+    IEnumerator ScatterdPulmBlossoms()
+    {
+        yield return new WaitForSeconds(3.0f);
+        float t = 0;
+        while(true)
+        {
+            t += 0.01f;
+            m.material.SetColor(str_color, Color.Lerp(color, bloomColor, t));
+
+            if (t > 10.0f)
+            {
+                yield break;
+            }
+
+            Debug.Log(Color.Lerp(color, bloomColor, t));
+            yield return new WaitForSeconds(0.01f);
+        }
+
+    }
+
+
 }
