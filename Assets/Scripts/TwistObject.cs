@@ -6,12 +6,15 @@ public class TwistObject : MonoBehaviour
 {
     public string str_k;
     public string str_color;
+    public string str_birdPos;
 
     private MeshRenderer m;
     private Vector3 mouse;
     private Color color;
     private Color lerpedColor;
     private Color bloomColor;
+    private Vector3 birdPos_def;
+    private Vector3 birdPos_esc;
     float ini_posx;
     float dist = 0;
     int count = 0;
@@ -22,7 +25,9 @@ public class TwistObject : MonoBehaviour
     void Start()
     {
         m = this.GetComponent<MeshRenderer>();
-        bloomColor = new Color(191, 32, 40);
+        bloomColor = new Color(191, 32, 40, 255);
+        birdPos_def = new Vector3(0.05f, 0.16f, -0.01f);
+        birdPos_esc = new Vector3(-0.34f, 0.92f, 0.34f);
     }
 
     // Update is called once per frame
@@ -44,11 +49,10 @@ public class TwistObject : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0)) //マウスが離されたら
         {
+            Debug.Log("マウスが離されたら");
             StartCoroutine(SincCurve(dist));
             count = 0;
             dist = 0;
-            color = new Color(191, 191, 191, 0);
-            m.material.SetColor(str_color, color);
             StartCoroutine("ScatterdPulmBlossoms");
         }
 
@@ -57,6 +61,7 @@ public class TwistObject : MonoBehaviour
             Debug.Log("aa");
         }
 
+        m.material.SetVector(str_birdPos, Vector3.Lerp(birdPos_def, birdPos_esc, 1.0f));
 
     }
 
@@ -84,7 +89,11 @@ public class TwistObject : MonoBehaviour
 
     IEnumerator ScatterdPulmBlossoms()
     {
+        color = new Color(191, 191, 191, 255);
+        m.material.SetColor(str_color, color);
+
         yield return new WaitForSeconds(3.0f);
+
         float t = 0;
         while(true)
         {
@@ -100,6 +109,12 @@ public class TwistObject : MonoBehaviour
             yield return new WaitForSeconds(0.01f);
         }
 
+    }
+
+    IEnumerator TakeOffByBird()
+    {
+
+        yield return new WaitForSeconds(3.0f);
     }
 
 
