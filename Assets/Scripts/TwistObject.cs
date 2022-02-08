@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TwistObject : MonoBehaviour
 {
+    public string str;
     private MeshRenderer m;
     private Vector3 mouse;
     float ini_posx;
@@ -30,7 +31,7 @@ public class TwistObject : MonoBehaviour
                 ini_posx = mouse.x;
             }
             dist = mouse.x - ini_posx;
-            m.material.SetFloat("Vector1_a52cf50a8f9a419485bec3890ad162a4", Mathf.Clamp(dist, -MAX_RANGE, MAX_RANGE));
+            m.material.SetFloat(str, Mathf.Clamp(dist, -MAX_RANGE, MAX_RANGE));
             count++;
             Debug.Log(mouse.x);
         }
@@ -58,12 +59,12 @@ public class TwistObject : MonoBehaviour
         {
 
             float b = ymax * Mathf.Sin(x) / (2 * x) ;
-            m.material.SetFloat("Vector1_a52cf50a8f9a419485bec3890ad162a4", b);
+            m.material.SetFloat(str, b);
 
             x += 0.5f;
             yield return new WaitForSeconds(0.01f);
 
-            if (x > 100f)
+            if (x > 50f)
             {
                 yield break;
             }
